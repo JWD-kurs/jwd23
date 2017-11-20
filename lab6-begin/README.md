@@ -30,15 +30,15 @@ Web site - [https://angularjs.org/](https://angularjs.org/).
 
 U web aplikacijama, HTML, CSS i JS fajlovi su statički resursi - u smislu da prilikom učitavanja stranice, ovi fajlovi se dobave sa servera i njihova upotreba se vrši u samom browseru.
 
-Spring ima poseban folder iz kojih servira statičke resurse, taj folder se **mora nalaziti u src/main/webapp** i **mora se zvati "static" ili "resources" ili "public"**
+Spring ima posebne foldere iz kojih servira statičke resurse. Jedna od mogućih varijanti je folder koji se **mora nalaziti u src/main/webapp** i **mora se zvati "static" ili "resources" ili "public"**. Druga varijanta jeste folder **static folder unutar foldera src/main/resources**.
 (pogledati [https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot](https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot)).
 
 ---
 
-* U src/main/webapp, napraviti folder "static" i u njemu sledeću strukturu:
+* U src/main/resources, napraviti folder "static" i u njemu sledeću strukturu:
 
 ```
-src/main/webapp/static
+src/main/resources/static
 				|
 				-- app
 					|
@@ -51,19 +51,19 @@ src/main/webapp/static
 					-- css
 ```
 
-* U src/main/webapp/static/app/html napraviti novi fajl - index.html (HTML5) - ovo će biti osnovna stranica naše SPA aplikacije.
+* U src/main/resources/static/ napraviti novi fajl - index.html (HTML5) - ovo će biti osnovna stranica naše SPA aplikacije.
 
 * Stranica index.html ima specijalan trentman, jer je, u slučaju kad postoji, Spring smatra početnom stranicom ("welcome page"). To znači da će ona biti servirana kao korenski resurs, sa adrese http://localhost:8080/ u našem slučaju.
 
 ---
 
-* U src/main/webapp/static/app/js napraviti novi fajl - main.js - ovde će biti pisan sav AngularJS kod koji se koristi u klijentskoj SPA aplikaciji.
+* U src/main/resources/static/app/js napraviti novi fajl - main.js - ovde će biti pisan sav AngularJS kod koji se koristi u klijentskoj SPA aplikaciji.
 
 * U index.html dodati import angular.js, i main.js.
 
 ```html
-<script src="/static/assets/js/angular.js"></script>
-<script src="/static/app/js/main.js"></script>
+<script src="/assets/js/angular.js"></script>
+<script src="/app/js/main.js"></script>
 ```
 
 ----
@@ -124,7 +124,7 @@ tj. delovi interfejsa koji su specifični za tu stranicu.
 * Modul za rutiranje uključiti u HTML **posle angular.js, a pre main.js fajla**.
 
 ```html
-<script src="/static/assets/js/angular-route.js"></script>
+<script src="/assets/js/angular-route.js"></script>
 ```
 
 * U main.js dodati ngRoute modul u aplikaciju:
@@ -139,10 +139,10 @@ var wafepaApp = angular.module('wafepaApp', ['ngRoute']);
 wafepaApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 		.when('/', {
-			templateUrl : '/static/app/html/partial/home.html'
+			templateUrl : '/app/html/partial/home.html'
 		})
 		.when('/activities', {
-			templateUrl : '/static/app/html/partial/activities.html'
+			templateUrl : '/app/html/partial/activities.html'
 		})
 		.otherwise({
 			redirectTo: '/'
