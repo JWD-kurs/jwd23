@@ -1,0 +1,73 @@
+<div ng-controller="standoviCtrl">
+	<br/>
+	<br/>
+	
+	<div class="page-header">
+		<h3>Standovi</h3>
+	</div>
+	
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label for="zakupac">Zakupac</label>
+			<input class="form-control" ng-model="newStand.zakupac"  id="zakupac" type="text"/>
+		</div>
+		<div class="form-group">
+			<label for="povrsina">Povrsina</label>
+			<input class="form-control" ng-model="newStand.povrsina" id="povrsina" type="text"/>
+		</div>
+		<div class="form-group">
+			<label for="sajam">Sajam</label>
+			<select class="form-control" ng-model="newStand.sajamId" id="sajam">
+				<option ng-repeat="x in sajmovi" value="{{x.id}}">
+					{{x.naziv}}
+				</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary" ng-click="addStand()">Dodaj</button>
+		</div>
+	</form>
+	
+	<br/>
+	
+	<h3>Pretraga</h3>
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label for="zakupacP">Zakupac</label>
+			<input class="form-control" ng-model="searchedStand.zakupac" id="zakupacP" type="text"/>
+		</div>
+		<div class="form-group">
+			<label for="minP">Minimalna povrsina</label>
+			<input class="form-control" ng-model="searchedStand.minP"  id="minP" type="text"/>
+		</div>
+		<div class="form-group">
+			<label for="maxP">Maksimalna povrsina</label>
+			<input class="form-control" ng-model="searchedStand.maxP"  id="maxP" type="text"/>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary" ng-click="search()">Pretrazi</button>
+		</div>
+	</form>
+	
+	<br/>
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" ng-click="go(-1)" ng-disabled="pageNum == 0">Previous</button>
+		<button class="btn btn-primary" ng-click="go(1)" ng-disabled="pageNum == totalPages - 1">Next</button>
+	</div>
+	<br/>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Zakupac</th>
+				<th>Naziv Sajma</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="s in standovi">
+				<td>{{s.zakupac}}</td>
+				<td>{{s.povrsina}}</td>
+				<td>{{s.sajamNaziv}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

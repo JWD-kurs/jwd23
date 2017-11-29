@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script type="text/javascript" src="/assets/js/angular.js"></script>
+		<script type="text/javascript" src="/assets/js/angular-route.min.js"></script>
+		<script type="text/javascript" src="/app/js/main.js"></script>
+	
+		 <link href="/assets/css/bootstrap.css" rel="stylesheet">
+		 <link href="/assets/css/bootstrap-theme.css" rel="stylesheet">
+		 <link href="/app/css/style.css" rel="stylesheet">
+	</head>
+	<body ng-app="WafepaApp">
+		
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#!/home">JWD</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="#!/activities">Activites</a></li>
+					<li><a href="#!/standovi">Standovi</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="container">
+			<div ng-view>
+			</div>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="/assets/js/bootstrap.js"></script>
+	</body>
+</html>
